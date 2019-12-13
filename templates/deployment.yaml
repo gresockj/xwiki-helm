@@ -61,6 +61,13 @@ spec:
               name: {{ template "fullname" . }}
               key: INDEX_PORT
         {{- end }}
+        {{- if .Values.contextPath }}
+        - name: CONTEXT_PATH
+          valueFrom:
+            configMapKeyRef:
+              name: {{ template "fullname" . }}
+              key: CONTEXT_PATH
+        {{- end }}
         - name: DB_HOST
           valueFrom:
             configMapKeyRef:
@@ -80,7 +87,7 @@ spec:
 {{ toYaml .Values.resources | indent 12 }}
         volumeMounts:
         - name: xwiki-data
-          mountPath: /opt/solr/server/solr
+          mountPath: /usr/local/xwiki
       volumes:
       - name: xwiki-data
         persistentVolumeClaim:

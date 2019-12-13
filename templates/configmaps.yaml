@@ -25,6 +25,9 @@ data:
   DB_HOST: {{ .Values.externalDB.host | quote }}
   DB_DATABASE: {{ .Values.externalDB.database | quote }}
 {{- end }}
+{{- if .Values.contextPath }}
+  CONTEXT_PATH: "{{ .Values.contextPath  }}"
+{{- end }}
 # {{- range $key, $value := .Values.database }}
 #   {{ $key }}: {{ $value | indent 4 }}
 # {{- end }}
